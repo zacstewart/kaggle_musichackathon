@@ -21,7 +21,7 @@ test  <- read.csv('data/test.csv')
 
 # Join users to their examples
 train <- merge(train, users, by='User')
-test  <- merge(test, users, by='User')
+test  <- merge(test, users, by='User', all.x=TRUE)
 
 # Split dataset
 # construct - useed to build model
