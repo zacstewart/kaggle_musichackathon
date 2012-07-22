@@ -6,8 +6,9 @@
 # (loses 2.623031698% of the data)
 
 INFILE=$1
-if [ -a $INFILE ]
-then
+if [ -z $INFILE ]; then
+  echo "Usage: $0 INFILE"
+elif [ -a $INFILE ]; then
   sed -e "
     s/\"Employed 30+ hours a week\"/0/g;
     s/\"Employed 8-29 hours per week\"/1/g;
@@ -34,9 +35,6 @@ then
     s/\"Less than an hour\"/0/g
 
     " $INFILE | grep -Ev '"More than 16 hours"|"16\+ hours"'
-else if [ -z $INFILE ]
-then
-  echo "$0: $INFILE does not exist."
 else
-  echo "Usage: $0 INFILE"
+  echo "$0: $INFILE does not exist."
 fi

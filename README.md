@@ -2,9 +2,11 @@
 This is my attempt at the Kaggle EMI Music Hackathon in R.
 
 ## Data Cleanup
-I wrote some shell script to clean up the data files
+I wrote some shell script to clean up the data files. Some values were
+repeated with slight formatting vartiations. I replaced them all with
+integers to cut down on filesize and normalize the values.
 
-### Users: _clean_users.sh_
+### Users: _clean_users_
 
 #### WORKING
 * 0 "Employed 30+ hours a week"
@@ -30,5 +32,23 @@ I wrote some shell script to clean up the data files
 * 4 "Music means a lot to me and is a passion of mine"
 
 #### LIST_{OWN,BACK}
-Cleans columns up to only have integer value. Drops the rows with variations
-of "More than..."
+Cleans columns up to only have integer value representing hours. Drops the
+rows with variations of "More than..."
+
+### Words: _clean_words_
+
+#### HEARD_OF
+* 0 Never heard of
+* 1 Ever heard of
+* 3 Ever heard music by
+* 4 Heard of and listened to music EVER
+* 5 Heard of and listened to music RECENTLY
+* 2 Heard of
+* 6 Listened to recently
+
+#### OWN_ARTIST_MUSIC
+* 0 [dD]on.t know
+* 1 Own none of their music
+* 2 Own a little of their music
+* 3 Own a lot of their music
+* 4 Own all or most of their music

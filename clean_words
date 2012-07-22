@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+# Replaces Heard of and own artist music
+# values with integers. Line 14 "Heard of"
+# is out of order to reduce regex complexity
+
+INFILE=$1
+if [ -z $INFILE ]; then
+  echo "Usage: $0 INFILE"
+elif [ -a $INFILE ]; then
+  sed -e "
+    s/Never heard of/0/g;
+    s/Ever heard of/1/g;
+    s/Ever heard music by/3/g;
+    s/Heard of and listened to music EVER/4/g;
+    s/Heard of and listened to music RECENTLY/5/g;
+    s/Heard of/2/g;
+    s/Listened to recently/6/g;
+
+    s/[dD]on.t know/0/g;
+    s/Own none of their music/1/g;
+    s/Own a little of their music/2/g;
+    s/Own a lot of their music/3/g;
+    s/Own all or most of their music/4/g
+  " $INFILE
+else
+  echo "$0: $INFILE does not exist."
+fi
